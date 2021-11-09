@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_launch_background.xml.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-mdpi_icon.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-mdpi\\icon.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-hdpi_icon.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-hdpi\\icon.png"
+    },
+    {
+        "merged": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_icon.png.flat",
+        "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\mipmap-xhdpi\\icon.png"
+    }
+]
