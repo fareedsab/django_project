@@ -8,6 +8,5 @@ urlpatterns = [
     path('Login/create/',views.createLogin),
     path('Login/<str:uname>/update/',views.updateLogin),
     path('Login/<str:uname>/delete/',views.deleteLogin),
-    path(r'^Login/(?P<param1>[\w-]+)/(?P<param2>[\w-]+)/$',views.getSingleLogin),
     path('Login/<str:uname>',views.getSingleLogin),
 ]

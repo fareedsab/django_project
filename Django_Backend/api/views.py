@@ -32,9 +32,15 @@ def getSingleLogin(request,uname):
 @api_view(['POST'])#POST FOR ADD/GET
 def createLogin(request):
     data = request.data
+    tempU = str(data['username'])
+    tempU = tempU.lower()
+    tempE = str(data['email'])
+    tempE = tempE.lower()
     login = Login.objects.create(
-        username = data['username'],
-        password = data['password']
+        username = tempU,
+        password = data['password'],
+        email = tempE,
+        name = data['name']
     )
     serializer = LoginSerializer(login,many = False)
     return Response(serializer.data)
