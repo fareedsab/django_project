@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\Flutter_Frontend\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\FlutterProject\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "E:\\UniStuff\\Semester 5\\DB Theory\\Project\\Flutter_Frontend\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

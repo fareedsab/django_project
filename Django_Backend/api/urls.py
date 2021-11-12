@@ -4,9 +4,9 @@ from . import views
 
 urlpatterns = [
     path('',views.getRoutes),
-    path('Login/',views.getLogin),
-    path('Login/create/',views.createLogin),
-    path('Login/<str:uname>/update/',views.updateLogin),
-    path('Login/<str:uname>/delete/',views.deleteLogin),
-    path('Login/<str:uname>',views.getSingleLogin),
+    path('login/',views.getLogin),
+    path('login/create/',views.createLogin),
+    path('login/<str:uname>/update/',views.updateLogin),
+    path('login/<str:uname>/delete/',views.deleteLogin),
+    path('login/<str:uname>',views.getSingleLogin),
 ]

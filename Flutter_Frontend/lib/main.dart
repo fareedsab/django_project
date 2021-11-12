@@ -4,17 +4,17 @@ import 'package:untitled/UI/input_field.dart';
 import 'package:untitled/home_page.dart';
 import 'package:untitled/models/login_model.dart';
 import 'package:untitled/resetpassword.dart';
-import 'package:untitled/UI/create.dart';
+import 'package:untitled/UI/signup_page.dart';
 import 'package:http/http.dart';
 
-Uri retrieveUrl = Uri.parse("//127.0.0.1:8000/Login/");
-String url = "http://10.0.2.2:8000/Login/";
+//GLOBAL VARIABLE
+String url = "http://10.0.2.2:8000/login/";
 void main() => runApp(MyApp());
 
-Uri deleteUrl(String uname){
-  Uri finalUrl = Uri.http(url+uname+"/delete/","");
-  return finalUrl;
-}
+// Uri deleteUrl(String uname){
+//   Uri finalUrl = Uri.http(url+uname+"/delete/","");
+//   return finalUrl;
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

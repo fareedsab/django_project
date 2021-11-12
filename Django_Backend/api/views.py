@@ -29,7 +29,7 @@ def getSingleLogin(request,uname):
     serializer = LoginSerializer(login,many=False)
     return Response(serializer.data)
 
-@api_view(['POST'])#POST FOR ADD/GET
+@api_view(['POST'])#POST FOR ADD
 def createLogin(request):
     data = request.data
     tempU = str(data['username'])
