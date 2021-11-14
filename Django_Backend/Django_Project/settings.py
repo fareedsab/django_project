@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ux@+m&s6w!!ki$cvalh=pvpmaf2ew75g83b%nv0czbewi(usjl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['10.0.2.2','localhost','127.0.0.1','*']
 
 
 # Application definition
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'rest_framework',
-    "corsheaders",
+    'rest_framework.authtoken',
+    'corsheaders',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -84,6 +86,27 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
+# AUTH_USER_MODEL='authapp.User'
+
+# DJOSER = {
+#     'LOGIN_FIELD': 'username',
+#     'USER_CREATE_PASSWORD_RETYPE': True,
+#     'SERIALIZER':{
+#         'user_create': 'authapp.serializers.UserCreateSerializer',
+#         'user': 'authapp.serializers.UserCreateSerializer',
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
