@@ -1,20 +1,60 @@
 from django.db import models
+from django.db.models.fields.reverse_related import ManyToOneRel
 from django.dispatch import receiver
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail 
+
 # Create your models here.
-class Login(models.Model):
-    username = models.TextField(unique=True)
+class user(models.Model):
+    username = models.TextField(unique=True,primary_key=True)
     email = models.TextField(unique=True)
-    name = models.TextField()
+    fname = models.TextField()
+    lname = models.TextField()
+    address = models.TextField()
     password = models.TextField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    id = models.AutoField(auto_created=True,primary_key=True,verbose_name='ID')
+    user_id = models.AutoField(auto_created=True)
+
+class worker(models.Model):
+    username = models.TextField(primary_key=True,unique=True)
+    email = models.TextField(unique=True)
+    fname = models.TextField()
+    lname = models.TextField()
+    password = models.TextField()
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    worker_id = models.AutoField(auto_created=True)
+    feedback = models.ForeignKey(feedback)
+    average_rates = models.FloatField()
+
+class appointment(models.Model):
+    username = models.TextField(primary_key=True,unique=True)
+    appointment_id = models.AutoField(auto_created=True)
+    start_date = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField()
+    
+class payment(models.Model):
+    total = models.FloatField() 
+    method = models.TextField()
+    payment_id = models.AutoField(auto_created=True)
+    
+class service(models.Model):
+    service_id = models.AutoField(primary_key=True,auto_created=True) 
+    name = models.TextField()
+
+class feedback(models.Model):
+    feedback_id = models.AutoField(primary_key=True,auto_created=True) 
+    rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+    comments = models.TextField()
+
     def __str__(self):
         return self.username[0:50]
     
+
     class Meta:
         ordering = ['-updated']
 
