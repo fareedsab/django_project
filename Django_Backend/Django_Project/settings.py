@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ux@+m&s6w!!ki$cvalh=pvpmaf2ew75g83b%nv0czbewi(usjl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2','localhost','127.0.0.1','*']
+ALLOWED_HOSTS = ['10.0.2.2','localhost','127.0.0.1']
 
 
 # Application definition
@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'rest_framework',
-    'rest_framework.authtoken',
+    'django_rest_passwordreset',
     'corsheaders',
-    'djoser',
+    'emailer',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'Django_Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR) + '/templates/',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,27 +86,6 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
-}
-
-# AUTH_USER_MODEL='authapp.User'
-
-# DJOSER = {
-#     'LOGIN_FIELD': 'username',
-#     'USER_CREATE_PASSWORD_RETYPE': True,
-#     'SERIALIZER':{
-#         'user_create': 'authapp.serializers.UserCreateSerializer',
-#         'user': 'authapp.serializers.UserCreateSerializer',
-#     },
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -152,3 +131,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIT_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'

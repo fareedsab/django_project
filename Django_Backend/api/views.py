@@ -1,8 +1,16 @@
+from django.views import generic
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import LoginSerializer
+from .serializers import ChangePasswordSerializer, LoginSerializer
 from .models import Login
-
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated,AllowAny,IsAuthenticatedOrReadOnly
+from rest_framework.decorators import action
+from django.shortcuts import render
+from django.views.generic import View
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.core.mail import send_mail, send_mass_mail
 @api_view(['GET'])
 def getRoutes(request):
     routes=[
@@ -61,3 +69,22 @@ def deleteLogin(request,uname):
     login = Login.objects.get(username=uname)
     login.delete()
     return Response('Login was deleted')
+
+class SendFormEmail(View):
+    def  get(self, request):
+        # Get the form data 
+        name = request.GET.get('name', None)
+        email = request.GET.get('email', None)
+        message = request.GET.get('message', None)
+        # Send Email
+        send_mail(
+            'Subject - Django Email Testing', 
+            'Hello ' + name + ',\n' + message, 
+            'wahajkhan788@gmail.com', # Admin
+            [
+                email,
+            ]
+        ) 
+        # Redirect to same page after form submit
+        messages.success(request, ('Email sent successfully.'))
+        return redirect('home') 
