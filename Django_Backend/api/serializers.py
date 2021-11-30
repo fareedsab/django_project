@@ -2,14 +2,14 @@ from django.db import models
 from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import Login
+from .models import user
 
-class LoginSerializer(ModelSerializer):
+class userSerializer(ModelSerializer):
     class Meta:
-        model = Login
+        model = user
         fields = '__all__'
 
 class ChangePasswordSerializer(serializers.Serializer):
-    model = Login
+    model = user
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)

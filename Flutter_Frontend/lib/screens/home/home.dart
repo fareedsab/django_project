@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:untitled/screens/default_screen/default_screen.dart';
 import 'package:untitled/screens/home_screen/home_screen.dart';
+import 'package:untitled/setting_page/setting_screen.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class _HomeState extends State<Home> {
     const DefaultScreen(),
     const DefaultScreen(),
     const DefaultScreen(),
-    const DefaultScreen(),
+    settingpage(),
   ];
 
   @override

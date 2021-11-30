@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:untitled/UI/input_field.dart';
-import 'package:untitled/home_page.dart';
 import 'package:untitled/models/login_model.dart';
 import 'package:untitled/resetpassword.dart';
 import 'package:untitled/UI/signup_page.dart';
 import 'package:http/http.dart';
+import 'package:untitled/screens/home/home.dart';
 
 //GLOBAL VARIABLE
 String url = "http://10.0.2.2:8000/login/";
@@ -42,7 +42,7 @@ class HomeScreen extends StatefulWidget {
 
 
 class HomeScreenState extends State<HomeScreen> {
-  List<Login> login = [];
+  List<User> login = [];
   String test='';
   final usernamecontroller = TextEditingController();
   final passcontroller = TextEditingController();
@@ -65,7 +65,7 @@ class HomeScreenState extends State<HomeScreen> {
     Response uri = await get(Uri.parse(url));
     List response = json.decode((uri.body));
     response.forEach((element) {
-      login.add(Login.fromMap(element));
+      login.add(User.fromMap(element));
     });
   }
 
@@ -185,11 +185,12 @@ class HomeScreenState extends State<HomeScreen> {
                       bool temp=false;
                       for(var map in login)
                       {
+                        debugPrint(map.username);
                         if(map.username==usernamecontroller.text && map.password==passcontroller.text)
                         {
                           temp=true;
                           Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Home(map)));
+                          MaterialPageRoute(builder: (context) => Home()));
                         }
                       }
                       if(temp==false)
