@@ -34,36 +34,38 @@ CATEGORY_CHOICES = (
     ('maid','MAID'),
 )
 class user(models.Model):
-    username = models.TextField(unique=True)
-    email = models.TextField(unique=True)
-    fname = models.TextField()
+    username = models.TextField(unique=True,primary_key=True,on_delete=models.CASCADE)
+    email = models.TextField(unique=True,null=False)
+    fname = models.TextField(null=False)
     lname = models.TextField()
+    contact = models.TextField(null=False)
     address = models.TextField()
-    password = models.TextField()
+    password = models.TextField(null=False)
     image = models.ImageField(upload_to=upload_to_user,null=True,blank=True,default='media/default.jpg')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    user_id = models.AutoField(auto_created=True,primary_key=True)
+    # user_id = models.AutoField(auto_created=True,primary_key=True)
 
 
 class worker(models.Model):
-    username = models.TextField(unique=True)
-    email = models.TextField(unique=True)
-    fname = models.TextField()
+    username = models.TextField(unique=True,primary_key=True,on_delete=models.CASCADE)
+    email = models.TextField(unique=True,null=False)
+    fname = models.TextField(null=False)
     lname = models.TextField()
+    contact = models.TextField(null=False)
     category = models.CharField(choices=CATEGORY_CHOICES,null=False)
-    password = models.TextField()
+    password = models.TextField(null=False)
     image = models.ImageField(upload_to=upload_to_worker,null=True,blank=True,default='media/default.jpg')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    worker_id = models.AutoField(auto_created=True,primary_key=True)
+    # worker_id = models.AutoField(auto_created=True,primary_key=True)
     # feedback = models.ForeignKey(feedback)
-    average_rates = models.FloatField()
+    # average_rates = models.FloatField()
 
 class appointment(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES,null=False)
-    u_username = models.TextField(unique=True)
-    w_username = models.TextField(unique=True)
+    u_username = models.ForeignKey(user, related_name='username', on_delete=models.CASCADE)
+    w_username = models.ForeignKey(worker, related_name='username', on_delete=models.CASCADE)
     appointment_id = models.AutoField(auto_created=True,primary_key=True)
     timing = models.TimeField()
     status = models.BooleanField()#Change to options
@@ -73,17 +75,17 @@ class appointment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
 class payment(models.Model):
-    total = models.FloatField() 
-    method = models.TextField()
+    total = models.FloatField(null=False) 
+    method = models.TextField(null=False)
     payment_id = models.AutoField(auto_created=True,primary_key=True)
     
 class service(models.Model):
     service_id = models.AutoField(primary_key=True,auto_created=True) 
-    name = models.TextField()
+    name = models.TextField(null=False)
 
 class feedback(models.Model):
     feedback_id = models.AutoField(primary_key=True,auto_created=True) 
-    rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+    rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
     comments = models.TextField()
 
     def __str__(self):

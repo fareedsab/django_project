@@ -107,15 +107,15 @@ class ImageUpload(APIView):
 #Worker
 
 @api_view(['GET'])
-def getUsers(request):
+def getWorkers(request):
     Worker = worker.objects.all()
-    serializer = workerSerializer(worker,many=True)
+    serializer = workerSerializer(Worker,many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])#GET FOR RETRIEVE 
-def getSingleUser(request,uname):
-    User = user.objects.get(username=uname)
-    serializer = userSerializer(User,many=False)
+def getSingleWorker(request,uname):
+    Worker = worker.objects.get(username=uname)
+    serializer = workerSerializer(Worker,many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])#POST FOR ADD
@@ -133,16 +133,17 @@ def createWorker(request):
         lname = data['lname'],
         image = data['image'],
         address = data['address'],
+        category = data['category'],
     )
     serializer = workerSerializer(worker,many = False)
     return Response(serializer.data)
 
 @api_view(['PUT'])#PUT FOR UPDATE
-def updateUser(request,uname):
+def updateWorker(request,uname):
     data = request.data
-    User = user.objects.get(username=uname)
+    Worker = worker.objects.get(username=uname)
     
-    serializer = userSerializer(User,data=request.data)
+    serializer = workerSerializer(Worker,data=request.data)
     if serializer.is_valid():
         serializer.save()
     
