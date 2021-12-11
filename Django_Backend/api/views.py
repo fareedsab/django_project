@@ -1,8 +1,9 @@
 from django.views import generic
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ChangePasswordSerializer, userSerializer
-from .models import user
+from rest_framework.views import APIView
+from .serializers import *
+from .models import *
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated,AllowAny,IsAuthenticatedOrReadOnly
 from rest_framework.decorators import action
@@ -26,49 +27,52 @@ def getRoutes(request):
     return Response(routes)
 
 @api_view(['GET'])
-def getLogin(request):
-    login = user.objects.all()
-    serializer = userSerializer(login,many=True)
+def getUsers(request):
+    User = user.objects.all()
+    serializer = userSerializer(User,many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])#GET FOR RETRIEVE 
-def getSingleLogin(request,uname):
-    login = user.objects.get(username=uname)
-    serializer = userSerializer(login,many=False)
+def getSingleUser(request,uname):
+    User = user.objects.get(username=uname)
+    serializer = userSerializer(User,many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])#POST FOR ADD
-def createLogin(request):
+def createUser(request):
     data = request.data
     tempU = str(data['username'])
     tempU = tempU.lower()
     tempE = str(data['email'])
     tempE = tempE.lower()
-    login = user.objects.create(
+    User = user.objects.create(
         username = tempU,
         password = data['password'],
         email = tempE,
-        name = data['name']
+        fname = data['fname'],
+        lname = data['lname'],
+        image = data['image'],
+        address = data['address'],
     )
-    serializer = userSerializer(login,many = False)
+    serializer = userSerializer(User,many = False)
     return Response(serializer.data)
 
 @api_view(['PUT'])#PUT FOR UPDATE
-def updateLogin(request,uname):
+def updateUser(request,uname):
     data = request.data
-    login = user.objects.get(username=uname)
+    User = user.objects.get(username=uname)
     
-    serializer = userSerializer(login,data=request.data)
+    serializer = userSerializer(User,data=request.data)
     if serializer.is_valid():
         serializer.save()
     
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-def deleteLogin(request,uname):
-    login = user.objects.get(username=uname)
-    login.delete()
-    return Response('Login was deleted')
+def deleteUser(request,uname):
+    User = user.objects.get(username=uname)
+    User.delete()
+    return Response('User was deleted')
 
 class SendFormEmail(View):
     def  get(self, request):
@@ -88,3 +92,58 @@ class SendFormEmail(View):
         # Redirect to same page after form submit
         messages.success(request, ('Email sent successfully.'))
         return redirect('home') 
+
+
+class ImageUpload(APIView):
+    def post(self,request,format=None):
+        print(request.data)
+        serializer = userSerializer(date=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+#Worker
+
+@api_view(['GET'])
+def getUsers(request):
+    Worker = worker.objects.all()
+    serializer = workerSerializer(worker,many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])#GET FOR RETRIEVE 
+def getSingleUser(request,uname):
+    User = user.objects.get(username=uname)
+    serializer = userSerializer(User,many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])#POST FOR ADD
+def createWorker(request):
+    data = request.data
+    tempU = str(data['username'])
+    tempU = tempU.lower()
+    tempE = str(data['email'])
+    tempE = tempE.lower()
+    Worker = worker.objects.create(
+        username = tempU,
+        password = data['password'],
+        email = tempE,
+        fname = data['fname'],
+        lname = data['lname'],
+        image = data['image'],
+        address = data['address'],
+    )
+    serializer = workerSerializer(worker,many = False)
+    return Response(serializer.data)
+
+@api_view(['PUT'])#PUT FOR UPDATE
+def updateUser(request,uname):
+    data = request.data
+    User = user.objects.get(username=uname)
+    
+    serializer = userSerializer(User,data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)

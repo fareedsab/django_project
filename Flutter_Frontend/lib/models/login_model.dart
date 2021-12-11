@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 class User {
   int user_id;
   String username;
@@ -8,6 +10,7 @@ class User {
   String lname;
   String email;
   String address;
+  String image;
   User({
     required this.user_id,
     required this.username,
@@ -16,6 +19,7 @@ class User {
     required this.lname,
     required this.email,
     required this.address,
+    required this.image,
   });
 
 
@@ -27,6 +31,7 @@ class User {
     String? lname,
     String? email,
     String? address,
+    String? image,
   }) {
     return User(
       user_id: user_id ?? this.user_id,
@@ -36,6 +41,7 @@ class User {
       lname: lname ?? this.lname,
       email: email ?? this.email,
       address: address ?? this.address,
+      image: image ?? this.image,
     );
   }
 
@@ -48,18 +54,20 @@ class User {
       'lname': lname,
       'email': email,
       'address': address,
+      'image': image,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      user_id: map['user_id'],
-      username: map['username'],
-      password: map['password'],
-      fname: map['fname'],
-      lname: map['lname'],
-      email: map['email'],
-      address: map['address'],
+      user_id: map['user_id']?.toInt() ?? 0,
+      username: map['username'] ?? '',
+      password: map['password'] ?? '',
+      fname: map['fname'] ?? '',
+      lname: map['lname'] ?? '',
+      email: map['email'] ?? '',
+      address: map['address'] ?? '',
+      image: map['image'] ?? '',
     );
   }
 
@@ -69,7 +77,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(user_id: $user_id, username: $username, password: $password, fname: $fname, lname: $lname, email: $email, address: $address)';
+    return 'User(user_id: $user_id, username: $username, password: $password, fname: $fname, lname: $lname, email: $email, address: $address, image: $image)';
   }
 
   @override
@@ -83,7 +91,8 @@ class User {
       other.fname == fname &&
       other.lname == lname &&
       other.email == email &&
-      other.address == address;
+      other.address == address &&
+      other.image == image;
   }
 
   @override
@@ -94,7 +103,8 @@ class User {
       fname.hashCode ^
       lname.hashCode ^
       email.hashCode ^
-      address.hashCode;
+      address.hashCode ^
+      image.hashCode;
   }
 }
 

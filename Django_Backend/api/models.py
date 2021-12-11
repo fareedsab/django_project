@@ -1,3 +1,4 @@
+from typing_extensions import Required
 from django.db import models
 from django.db.models.fields.reverse_related import ManyToOneRel
 from django.dispatch import receiver
@@ -5,8 +6,33 @@ from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail 
 from django.core.validators import MaxValueValidator, MinValueValidator
+import datetime
+import os
 
 # Create your models here.
+def upload_to_user(instance, filename):
+    return 'user/{filename}'.format(filename=filename)
+def upload_to_worker(instance, filename):
+    return 'worker/{filename}'.format(filename=filename)
+CATEGORY_CHOICES = (
+    ('engineer','ENGINEER'),
+    ('plumber', 'PLUMBER'),
+    ('doctor','DOCTOR'),
+    ('carpenter','CARPENTER'),
+    ('electrician','ELECTRICIAN'),
+    ('painter','PAINTER'),
+    ('barber','BARBER'),
+    ('house constructor','HOUSE CONSTRUCTOR'),
+    ('mason','MASON'),
+    ('gardener','GARDENER'),
+    ('cctv installation','CCTV INSTALLATION'),
+    ('roofing & ceiling','ROOFING & CEILING'),
+    ('welder','WELDER'),
+    ('tailor','TAILOR'),
+    ('ac/geyser installation','AC/GEYSER INSTALLATION'),
+    ('mobile repair','MOBILE REPAIR'),
+    ('maid','MAID'),
+)
 class user(models.Model):
     username = models.TextField(unique=True)
     email = models.TextField(unique=True)
@@ -14,16 +40,20 @@ class user(models.Model):
     lname = models.TextField()
     address = models.TextField()
     password = models.TextField()
+    image = models.ImageField(upload_to=upload_to_user,null=True,blank=True,default='media/default.jpg')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     user_id = models.AutoField(auto_created=True,primary_key=True)
+
 
 class worker(models.Model):
     username = models.TextField(unique=True)
     email = models.TextField(unique=True)
     fname = models.TextField()
     lname = models.TextField()
+    category = models.CharField(choices=CATEGORY_CHOICES,null=False)
     password = models.TextField()
+    image = models.ImageField(upload_to=upload_to_worker,null=True,blank=True,default='media/default.jpg')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     worker_id = models.AutoField(auto_created=True,primary_key=True)
@@ -31,12 +61,16 @@ class worker(models.Model):
     average_rates = models.FloatField()
 
 class appointment(models.Model):
-    username = models.TextField(unique=True)
+    category = models.CharField(choices=CATEGORY_CHOICES,null=False)
+    u_username = models.TextField(unique=True)
+    w_username = models.TextField(unique=True)
     appointment_id = models.AutoField(auto_created=True,primary_key=True)
+    timing = models.TimeField()
+    status = models.BooleanField()#Change to options
+    description = models.TextField(null=False)
     start_date = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField()
     
 class payment(models.Model):
     total = models.FloatField() 

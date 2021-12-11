@@ -186,7 +186,7 @@ class HomeScreenState extends State<HomeScreen> {
                       for(var map in login)
                       {
                         debugPrint(map.username);
-                        if(map.username==usernamecontroller.text && map.password==passcontroller.text)
+                        if(map.username.toLowerCase()==usernamecontroller.text.toLowerCase() && map.password==passcontroller.text)
                         {
                           temp=true;
                           Navigator.of(context).push(
